@@ -6,16 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.hydra.starbucksmock.R
 import com.hydra.starbucksmock.ui.viewmodel.Fragment1ViewModel
+import com.hydra.starbucksmock.ui.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_fragment1.*
+import org.koin.android.ext.android.inject
 
 class Fragment1 : Fragment() {
 
-    companion object {
-        fun newInstance() = Fragment1()
-    }
-
-    private lateinit var viewModel: Fragment1ViewModel
+    private val fragment1ViewModel: Fragment1ViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +24,16 @@ class Fragment1 : Fragment() {
         return inflater.inflate(R.layout.fragment_fragment1, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(Fragment1ViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupObservers()
     }
+
+    private fun setupObservers() {
+        fragment1ViewModel.detailListModel.observe(viewLifecycleOwner, Observer {
+            recyclerView.setModel(it)
+        })
+    }
+
 
 }
