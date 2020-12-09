@@ -22,7 +22,9 @@ class TitleValueListView : RecyclerView {
     }
 
     companion object {
-        const val TYPE_TWO_DESCRIPTION = 1
+        const val TYPE_HEADER = 1
+        const val TYPE_TWO_DESCRIPTION = 2
+        const val TYPE_MORE = 3
     }
 
     private val myAdapter = ListAdapter()
@@ -97,11 +99,25 @@ class TitleValueListView : RecyclerView {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindableViewHolder {
             return when (viewType) {
 
+                TYPE_HEADER -> {
+                    val view: View =
+                        LayoutInflater.from(parent.context)
+                            .inflate(R.layout.item_header, parent, false)
+                    HeaderViewHolder(view)
+                }
+
                 TYPE_TWO_DESCRIPTION -> {
                     val view: View =
                         LayoutInflater.from(parent.context)
                             .inflate(R.layout.item_two_description, parent, false)
                     TwoDescriptionViewHolder(view)
+                }
+
+                TYPE_MORE -> {
+                    val view: View =
+                        LayoutInflater.from(parent.context)
+                            .inflate(R.layout.item_more, parent, false)
+                    HeaderViewHolder(view)
                 }
 
                 else -> throw RuntimeException("Unreachable code")
@@ -115,6 +131,12 @@ class TitleValueListView : RecyclerView {
             viewHolder.bind(position)
         }
 
+    }
+
+    inner class HeaderViewHolder(view: View) : BindableViewHolder(view) {
+
+        override fun bind(index: Int) {
+        }
     }
 
     inner class TwoDescriptionViewHolder(view: View) : BindableViewHolder(view) {
