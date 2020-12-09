@@ -1,4 +1,4 @@
-package com.hydra.starbucksmock.ui.home
+package com.hydra.starbucksmock.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

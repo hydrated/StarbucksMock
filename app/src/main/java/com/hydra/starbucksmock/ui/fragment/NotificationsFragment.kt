@@ -1,4 +1,4 @@
-package com.hydra.starbucksmock.ui.notifications
+package com.hydra.starbucksmock.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.hydra.starbucksmock.R
+import com.hydra.starbucksmock.ui.viewmodel.NotificationsViewModel
 
 class NotificationsFragment : Fragment() {
 
